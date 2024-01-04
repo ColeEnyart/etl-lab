@@ -1,16 +1,24 @@
 class Quote:
-    def __init__(self, id, content, author, date_added):
-        self.id = id
-        self.content = content
-        self.author = author
-        self.date_added = date_added
+    __table__ = 'quotes'
+    attributes = ['id', 'identitifer', 'content' , 'author', 'date_added']
+    
+    def __init__(self, **kwargs):
+        for k, v in kwargs.items():
+                setattr(self, k ,v)
         
 class Tag:
-    def __init__(self, name):
-        self.name = name
+    __table__ = 'tags'
+    attributes = ['id', 'name']
+    
+    def __init__(self, **kwargs):
+        for k, v in kwargs.items():
+                setattr(self, k ,v)
         
 class QuoteTags:
-    def __init__(self, quote_id, tag_id):
-        self.quote_id = quote_id
-        self.tag_id = tag_id
+    __table__ = 'quote_tags'
+    attributes = ['id', 'quote_id', 'tag_id']
+    
+    def __init__(self, **kwargs):
+        for k, v in kwargs.items():
+                setattr(self, k ,v)
         

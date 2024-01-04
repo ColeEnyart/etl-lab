@@ -6,5 +6,4 @@ params = {}
 
 response = RequestAPI(url).run(params)
 transformed_quotes = QuotesAdapter().run(response)
-ans = [quote.__dict__ for quote in transformed_quotes]
-print(ans)
+print(transformed_quotes)
