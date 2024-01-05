@@ -3,9 +3,9 @@ from api.etl.adapter import QuotesAdapter
 
 class RequestAPI:
     def __init__(self: object, url: str) -> None:
-        self._url = url
+        self.url = url
     def run(self: object, params: dict = {}) -> dict:
-        response = requests.get(self._url, params)
+        response = requests.get(self.url, params)
         return response.json()
 
 if __name__ == '__main__':
