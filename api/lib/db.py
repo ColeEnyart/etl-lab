@@ -78,7 +78,7 @@ def drop_tables(table_names: list[str], cursor: object, conn: Any) -> None:
         drop_records(cursor, conn, table_name)
 
 def drop_all_tables(conn: Any, cursor: object) -> None:
-    table_names = ['teachers', 'students', 'courses', 'seats']
+    table_names = ['quotes', 'tags', 'quote_tags']
     drop_tables(table_names, cursor, conn)
 
 def find_by_name(Class: object, name: str, cursor: object) -> object | None:

@@ -27,13 +27,13 @@ def build_records():
     tag_3 = Tag(name= 'Motivational')
     saved_tag_3 = save(tag_3, test_conn, test_cursor)
     
-    quote_tag = QuoteTags(quote_id = saved_quote, tag_id = saved_tag)
+    quote_tag = QuoteTags(quote_id = saved_quote.__dict__['id'], tag_id = saved_tag.__dict__['id'])
     saved_quote_tag = save(quote_tag, test_conn, test_cursor)
-    quote_tag_1 = QuoteTags(quote_id = saved_quote_1, tag_id = saved_tag_1)
+    quote_tag_1 = QuoteTags(quote_id = saved_quote_1.__dict__['id'], tag_id = saved_tag_1.__dict__['id'])
     saved_quote_tag_1 = save(quote_tag_1, test_conn, test_cursor)
-    quote_tag_2 = QuoteTags(quote_id = saved_quote_2, tag_id = saved_tag_2)
+    quote_tag_2 = QuoteTags(quote_id = saved_quote_2.__dict__['id'], tag_id = saved_tag_2.__dict__['id'])
     saved_quote_tag_2 = save(quote_tag_2, test_conn, test_cursor)
-    quote_tag_3 = QuoteTags(quote_id = saved_quote_2, tag_id = saved_tag_3)
+    quote_tag_3 = QuoteTags(quote_id = saved_quote_2.__dict__['id'], tag_id = saved_tag_3.__dict__['id'])
     saved_quote_tag_3 = save(quote_tag_3, test_conn, test_cursor)
     
     return {'saved_quote': saved_quote, 
