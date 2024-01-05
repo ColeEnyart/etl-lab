@@ -1,8 +1,9 @@
 from api.target import Quote, Tag, QuoteTags
 from api.lib.db import save, conn, cursor
+from typing import Any
 
 class QuotesAdapter:        
-    def quotes_attributes(self, quote):
+    def quotes_attributes(self: object, quote: dict) -> dict[str, str]:
         identitifer = quote['_id']
         content = quote['content']
         author = quote['author']
@@ -12,11 +13,11 @@ class QuotesAdapter:
                 'author': author, 
                 'date_added': date_added}
     
-    def tag_attributes(self, quote):
+    def tag_attributes(self: object, quote: dict) -> dict[str, list]:
         tags = quote['tags']
         return {'tags': tags}
 
-    def run(self, quotes_response):
+    def run(self: object, quotes_response: dict) -> list[dict[str, dict]]:
         quotes = []
         for quote in quotes_response['results']:
             quote_attrs = self.quotes_attributes(quote)
@@ -25,7 +26,7 @@ class QuotesAdapter:
             quotes.append(saved_objs)
         return quotes
     
-    def save_db(self, quote_attrs, tag_attrs):
+    def save_db(self: object, quote_attrs: dict[str, str], tag_attrs: dict[str, list]) -> dict[str, dict]:
         quote_obj = Quote(**quote_attrs)
         saved_quote = save(quote_obj, conn, cursor)
         
