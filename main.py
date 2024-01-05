@@ -1,5 +1,5 @@
-from request_api import RequestAPI
-from adapter import QuotesAdapter
+from api.request_api import RequestAPI
+from api.adapter import QuotesAdapter
 
 url = 'https://api.quotable.io/quotes'
 params = {}

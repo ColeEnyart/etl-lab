@@ -1,5 +1,5 @@
 from target import Quote, Tag, QuoteTags
-from db import save, conn, cursor
+from api.lib.db import save, conn, cursor
 
 class QuotesAdapter:        
     def quotes_attributes(self, quote):
