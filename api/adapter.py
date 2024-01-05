@@ -1,4 +1,4 @@
-from target import Quote, Tag, QuoteTags
+from api.target import Quote, Tag, QuoteTags
 from api.lib.db import save, conn, cursor
 
 class QuotesAdapter:        
