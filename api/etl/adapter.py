@@ -1,9 +1,8 @@
-from api.target import Quote, Tag, QuoteTags
+from api.etl.target import Quote, Tag, QuoteTags
 from api.lib.db import save, conn, cursor
-from typing import Any
 
 class QuotesAdapter:        
-    def quotes_attributes(self: object, quote: dict) -> dict[str, str]:
+    def quote_attributes(self: object, quote: dict) -> dict[str, str]:
         identitifer = quote['_id']
         content = quote['content']
         author = quote['author']
@@ -20,7 +19,7 @@ class QuotesAdapter:
     def run(self: object, quotes_response: dict) -> list[dict[str, dict]]:
         quotes = []
         for quote in quotes_response['results']:
-            quote_attrs = self.quotes_attributes(quote)
+            quote_attrs = self.quote_attributes(quote)
             tag_attrs = self.tag_attributes(quote)
             saved_objs = self.save_db(quote_attrs, tag_attrs)
             quotes.append(saved_objs)
@@ -30,11 +29,11 @@ class QuotesAdapter:
         quote_obj = Quote(**quote_attrs)
         saved_quote = save(quote_obj, conn, cursor)
         
-        tag_objs = [Tag(**{'name': name}) for name in tag_attrs['tags']]
+        tag_objs = [Tag(name = name) for name in tag_attrs['tags']]
         saved_tags = [save(tag, conn, cursor) for tag in tag_objs]
         
-        QuoteTag_objs = [QuoteTags(**{'quote_id': saved_quote.__dict__['id'],
-                                      'tag_id': tag.__dict__['id']}) for tag in saved_tags]
+        QuoteTag_objs = [QuoteTags(quote_id = saved_quote.__dict__['id'], 
+                                   tag_id = tag.__dict__['id']) for tag in saved_tags]
         saved_QuoteTags = [save(quote_tag, conn, cursor)
                            for quote_tag in QuoteTag_objs]
         

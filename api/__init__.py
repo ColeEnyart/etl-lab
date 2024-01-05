@@ -1,8 +1,8 @@
 from flask import Flask
 from api.lib.db import find_all, find
 import psycopg2
-from api.target import Quote
-from typing import Literal, Any
+from api.etl.target import Quote
+from typing import Literal
 
 def create_app(database, user, password) -> Flask:
     app = Flask(__name__)

@@ -1,10 +1,9 @@
 from flask import json
 import pytest
 from api import create_app
-from api.lib.db import (get_db, close_db, drop_all_tables,
- save, test_conn, test_cursor)
+from api.lib.db import (get_db, close_db, drop_all_tables, test_cursor)
 from tests.build import build_records
-from settings import TEST_DB_NAME, TEST_DB_USER, PASSWORD 
+from settings import TEST_DB_NAME, TEST_DB_USER, PASSWORD
 
 @pytest.fixture
 def app():
@@ -15,7 +14,6 @@ def app():
         cursor = conn.cursor()
         drop_all_tables(conn, cursor)
         build_records()
-        # conn.commit()
         
         yield flask_app
         drop_all_tables(conn, cursor)

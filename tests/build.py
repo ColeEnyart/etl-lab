@@ -1,5 +1,5 @@
 from api.lib.db import (save, test_conn, test_cursor)
-from api.target import Quote, Tag, QuoteTags
+from api.etl.target import Quote, Tag, QuoteTags
 
 def build_records():
     quote = Quote(identitifer = 'BzfxvRlA2Y',
