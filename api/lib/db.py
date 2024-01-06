@@ -70,7 +70,9 @@ def keys(obj: object) -> LiteralString:
     return ', '.join(selected)
 
 def drop_records(cursor: object, conn: Any, table_name: str) -> None:
-    cursor.execute(f"DELETE FROM {table_name};")
+    # cursor.execute(f"DELETE FROM {table_name};")
+    # cursor.execute(f"ALTER SEQUENCE {table_name}_id_seq RESTART;")
+    cursor.execute(f"TRUNCATE {table_name} RESTART IDENTITY;")
     conn.commit()
 
 def drop_tables(table_names: list[str], cursor: object, conn: Any) -> None:
