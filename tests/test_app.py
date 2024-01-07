@@ -14,7 +14,6 @@ def app():
         cursor = conn.cursor()
         drop_all_tables(conn, cursor)
         build_records()
-        
         yield flask_app
         drop_all_tables(conn, cursor)
         close_db()

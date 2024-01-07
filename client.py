@@ -1,5 +1,6 @@
 import requests
 from api.etl.adapter import QuotesAdapter
+from api.lib.db import conn, cursor
 
 class RequestAPI:
     def __init__(self: object, url: str) -> None:
@@ -13,5 +14,5 @@ if __name__ == '__main__':
     params = {}
 
     response = RequestAPI(url).run(params)
-    transformed_quotes = QuotesAdapter().run(response)
+    transformed_quotes = QuotesAdapter().run(response, conn, cursor)
     print(transformed_quotes)

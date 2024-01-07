@@ -10,10 +10,9 @@ test_cursor = test_conn.cursor()
 
 conn = psycopg2.connect(dbname = DB_NAME,
         user = DB_USER)
-
 cursor = conn.cursor()
 
-def get_db() -> Any:
+def get_db():
     if "db" not in g:
         g.db = psycopg2.connect(user = current_app.config['DB_USER'],
                 password = current_app.config['DB_PASSWORD'],
@@ -70,9 +69,9 @@ def keys(obj: object) -> LiteralString:
     return ', '.join(selected)
 
 def drop_records(cursor: object, conn: Any, table_name: str) -> None:
-    # cursor.execute(f"DELETE FROM {table_name};")
-    # cursor.execute(f"ALTER SEQUENCE {table_name}_id_seq RESTART;")
-    cursor.execute(f"TRUNCATE {table_name} RESTART IDENTITY;")
+    cursor.execute(f"DELETE FROM {table_name};")
+    cursor.execute(f"ALTER SEQUENCE {table_name}_id_seq RESTART;")
+    # cursor.execute(f"TRUNCATE {table_name} RESTART IDENTITY;")
     conn.commit()
 
 def drop_tables(table_names: list[str], cursor: object, conn: Any) -> None:
